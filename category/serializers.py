@@ -4,7 +4,7 @@ from .models import Category, Content
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'category']
+        fields = ['id', 'category',]
 
     def create(self, validated_data):
         return Category.objects.create(**validated_data)

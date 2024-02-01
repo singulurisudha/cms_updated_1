@@ -1,20 +1,10 @@
 from django.urls import path
-from user.views import (UserRegistrationView , UserLoginView, UserRoleView,
-                         UserModuleView, UserPermissionsView)
-from django.urls import path
-
+from .views import UserLoginView, UserRegistrationView,RoleListCreateAPIView, PermissionListCreateAPIView, ModuleListCreateAPIView
 
 urlpatterns = [
-    path('register/',UserRegistrationView.as_view(),name='signup'),
-    path('login/',UserLoginView.as_view(),name='login'),
-    path('login/refresh/',UserLoginView.as_view(),name='refresh'),
-
-    path('roles/', UserRoleView.as_view(), name='role-list'),
-    path('roles/<int:pk>/', UserRoleView.as_view(), name='role-detail'),
-
-    path('modules/', UserModuleView.as_view(), name='module-list'),
-    path('modules/<int:pk>/', UserModuleView.as_view(), name='module-detail'),
-
-    path('permissions/', UserPermissionsView.as_view(), name='permissions-list'),
-
+    path('register/', UserRegistrationView.as_view(), name='user-registration'),
+    path('login/', UserLoginView.as_view(), name='user-login'),
+    path('roles/', RoleListCreateAPIView.as_view(), name='role-list-create'),
+    path('permissions/', PermissionListCreateAPIView.as_view(), name='permission-list-create'),
+    path('modules/', ModuleListCreateAPIView.as_view(), name='module-list-create'),
 ]

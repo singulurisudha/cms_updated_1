@@ -1,4 +1,5 @@
 from django.db import models
+from cms_project import settings
 
 class Category(models.Model):
     id=models.AutoField(primary_key=True)
@@ -14,8 +15,8 @@ class Content(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='contents')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT,related_name = "tickets",null=True)
-    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT,related_name = "tickets",null=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT,related_name = "created_by",null=True)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT,related_name = "updated_by",null=True)
     image=models.ImageField()
 
     def __str__(self):
