@@ -14,6 +14,8 @@ class Content(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='contents')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT,related_name = "tickets",null=True)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT,related_name = "tickets",null=True)
     image=models.ImageField()
 
     def __str__(self):
