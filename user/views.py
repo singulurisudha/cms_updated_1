@@ -1,12 +1,10 @@
 from rest_framework import generics
 from django.contrib.auth.models import User
-from .models import Role, Permission, Module
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import (UserLoginSerializer,RoleSerializer, 
-                          PermissionSerializer, ModuleSerializer , 
+from .serializers import (UserLoginSerializer, 
                           UserRegistrationSerializer,ForgetPasswordUpdateSerializer)
 
 
@@ -67,15 +65,3 @@ class UserLoginView(APIView):
                 return Response({"detail": "User with this email does not exist."}, status=status.HTTP_404_NOT_FOUND)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-class RoleListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Role.objects.all()
-    serializer_class = RoleSerializer
-
-class PermissionListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Permission.objects.all()
-    serializer_class = PermissionSerializer
-
-class ModuleListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Module.objects.all()
-    serializer_class = ModuleSerializer
