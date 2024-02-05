@@ -5,7 +5,6 @@ class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
         fields = ['name', 'slug', 'link']
-        read_only_fields = ['slug']
 
     def create(self, validated_data):
         return MenuItem.objects.create(**validated_data)

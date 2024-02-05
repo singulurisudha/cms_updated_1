@@ -2,18 +2,18 @@ from rest_framework import generics
 from .models import Category, Content
 from .serializers import CategorySerializer, ContentSerializer
 
-class CategoryListCreateAPIView(generics.ListCreateAPIView):
+class CategoryCreateAPIView(generics.CreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class CategoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+class CategoryUpdateDestroyAPIView(generics.UpdateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class ContentListCreateAPIView(generics.ListCreateAPIView):
+class ContentCreateAPIView(generics.CreateAPIView):
     queryset = Content.objects.all()
     serializer_class = ContentSerializer
 
-class ContentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+class ContenUpdateDestroyAPIView(generics.UpdateAPIView):
     queryset = Content.objects.all()
     serializer_class = ContentSerializer

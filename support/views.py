@@ -6,13 +6,11 @@ from .serializers import TicketSerializer
 class TicketListCreateAPIView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = TicketSerializer
+    queryset=Ticket.objects.all()
 
-    def get_queryset(self):
-        return Ticket.objects.values('issue', 'description', 'created_at', 'updated_at', 'category')
 
 class TicketRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = TicketSerializer
+    queryset=Ticket.objects.all()
 
-    def get_queryset(self):
-        return Ticket.objects.values('issue', 'description', 'created_at', 'updated_at', 'category')

@@ -1,12 +1,11 @@
-# views.py
 from rest_framework import generics
-from .models import MenuItem
-from .serializers import MenuItemSerializer
+from menu.models import MenuItem
+from menu.serializers import MenuItemSerializer
 
-class MenuItemListCreateAPIView(generics.ListCreateAPIView):
+class MenuItemCreateAPIView(generics.CreateAPIView):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
 
-class MenuItemRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+class MenuItemUpdateDestroyAPIView(generics.UpdateAPIView, generics.DestroyAPIView):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer

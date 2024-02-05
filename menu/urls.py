@@ -1,8 +1,8 @@
 # urls.py
 from django.urls import path
-from .views import MenuItemListCreateAPIView, MenuItemRetrieveUpdateDestroyAPIView
+from .views import MenuItemCreateAPIView, MenuItemUpdateDestroyAPIView
 
 urlpatterns = [
-    path('menu-items/', MenuItemListCreateAPIView.as_view(), name='menu-item-list-create'),
-    path('menu-items/<int:pk>/', MenuItemRetrieveUpdateDestroyAPIView.as_view(), name='menu-item-detail'),
+    path('menu-items/', MenuItemCreateAPIView.as_view(), name='menu-create'),
+    path('menu-items/<int:pk>/', MenuItemUpdateDestroyAPIView.as_view(), name='menu-item-update-delete'),
 ]
