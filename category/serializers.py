@@ -39,7 +39,6 @@ class ContentSerializer(serializers.ModelSerializer):
         # Check if the user is authenticated before creating the content
         if self.context['request'].user.is_authenticated:
             category=validated_data.get('category')
-            print(category)
             validated_data['created_by'] = self.context['request'].user
             category_instance = Category.objects.filter(category=validated_data.get('category')).first()
 
