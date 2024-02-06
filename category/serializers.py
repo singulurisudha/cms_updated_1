@@ -46,7 +46,8 @@ class ContentSerializer(serializers.ModelSerializer):
                 validated_data['category'] = category_instance
                 content_instance = Content.objects.create(
                     title=validated_data.get('title'),
-                    description = validated_data.get('description')
+                    description = validated_data.get('description'),
+                    created_by=self.context['request'].user
                 )
                 return content_instance
             else:
@@ -58,7 +59,7 @@ class ContentSerializer(serializers.ModelSerializer):
 
     def get_created_by(self, obj):
         if obj:
-            return obj.created_by.user
+            return obj.created_by.username
 
     def update(self, instance, validated_data):
         # Check if the user is authenticated before updating the content
