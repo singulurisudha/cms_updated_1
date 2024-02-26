@@ -40,17 +40,17 @@ class CategorySerializer(serializers.ModelSerializer):
 class ContentSerializer(serializers.ModelSerializer):
     created_by = serializers.CharField(max_length=120, read_only=True)
     permission_classes = [IsAuthenticated]
-<<<<<<< HEAD
+
     category = serializers.CharField(max_length=120,write_only=True,required=False)
     class Meta:
         model = Content
         fields = ['id', 'title', 'description', 'created_at', 'updated_at', 'created_by','category','archive']
-=======
+
     category = serializers.CharField(max_length=120,write_only=True)
     class Meta:
         model = Content
         fields = ['id', 'title', 'description', 'created_at', 'updated_at', 'created_by','category']
->>>>>>> 1103a6d72f00a37c7610cfaf2dd1621e0293f610
+
 
     def create(self, validated_data):
         # Check if the user is authenticated before creating the content
@@ -64,12 +64,12 @@ class ContentSerializer(serializers.ModelSerializer):
                 content_instance = Content.objects.create(
                     title=validated_data.get('title'),
                     description = validated_data.get('description'),
-<<<<<<< HEAD
+
                     created_by=self.context['request'].user,
                     archive='False'
-=======
+
                     created_by=self.context['request'].user
->>>>>>> 1103a6d72f00a37c7610cfaf2dd1621e0293f610
+
                 )
                 return content_instance
             else:
@@ -88,7 +88,7 @@ class ContentSerializer(serializers.ModelSerializer):
         if self.context['request'].user.is_authenticated:
             instance.title = validated_data.get('title', instance.title)
             instance.description = validated_data.get('description', instance.description)
-<<<<<<< HEAD
+
             
             # Get the username of the content creator
             content_creator_username = Content.objects.get(id=instance.id).created_by.username
@@ -102,11 +102,11 @@ class ContentSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("Only content creators can archive the content.")
         else:
             raise serializers.ValidationError("User must be authenticated to update content.")
-=======
+
             instance.category = validated_data.get('category', instance.category)
             instance.save()
             return instance
         else:
             raise serializers.ValidationError("User must be authenticated to update content.")
->>>>>>> 1103a6d72f00a37c7610cfaf2dd1621e0293f610
+
 
