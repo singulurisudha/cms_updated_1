@@ -12,7 +12,7 @@ class CategorySerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # Check if the user is authenticated before creating the category
         if self.context['request'].user.is_authenticated:
-<<<<<<< HEAD
+
             category=(str(validated_data['category']))
 
             if category.isalpha():
@@ -20,9 +20,9 @@ class CategorySerializer(serializers.ModelSerializer):
               return Category.objects.create(category=category.lower())
             else:
                 raise serializers.ValidationError("category must be only in alphabets...")
-=======
+
             return Category.objects.create(**validated_data)
->>>>>>> 1103a6d72f00a37c7610cfaf2dd1621e0293f610
+
         else:
             raise serializers.ValidationError("User must be authenticated to create a category.")
     
