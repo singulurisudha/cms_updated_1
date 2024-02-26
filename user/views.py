@@ -3,9 +3,15 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
+<<<<<<< HEAD
 from rest_framework.exceptions import PermissionDenied
 from rest_framework import status
 from .serializers import (UserRegistrationSerializer,UserLoginSerializer)
+=======
+from rest_framework import status
+from .serializers import (UserLoginSerializer, 
+                          UserRegistrationSerializer,ForgetPasswordUpdateSerializer)
+>>>>>>> 1103a6d72f00a37c7610cfaf2dd1621e0293f610
 
 
 class UserRegistrationView(APIView):
@@ -33,8 +39,12 @@ class UserLoginView(APIView):
                 # Check the password for the first user in the queryset
                 if user.check_password(password):
                     refresh = RefreshToken.for_user(user)
+<<<<<<< HEAD
                     return Response({'msg':{"Successfully Logged In ": '200 OK'},
                          
+=======
+                    return Response({
+>>>>>>> 1103a6d72f00a37c7610cfaf2dd1621e0293f610
                         'tokens': {
                             'access': str(refresh.access_token),
                             'refresh': str(refresh)
@@ -47,7 +57,11 @@ class UserLoginView(APIView):
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     def put(self, request):
+<<<<<<< HEAD
         serializer = UserLoginSerializer(data=request.data)
+=======
+        serializer = ForgetPasswordUpdateSerializer(data=request.data)
+>>>>>>> 1103a6d72f00a37c7610cfaf2dd1621e0293f610
 
         if serializer.is_valid():
             email = serializer.validated_data['email']
@@ -60,12 +74,19 @@ class UserLoginView(APIView):
                 user.set_password(password)
                 user.save()
 
+<<<<<<< HEAD
                 return Response({'msg':{"Success : ", 200},"detail": "Password reset successfully"}, status=status.HTTP_200_OK)
+=======
+                return Response({"detail": "Password reset successfully"}, status=status.HTTP_200_OK)
+>>>>>>> 1103a6d72f00a37c7610cfaf2dd1621e0293f610
 
             except User.DoesNotExist:
                 return Response({"detail": "User with this email does not exist."}, status=status.HTTP_404_NOT_FOUND)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+<<<<<<< HEAD
 
     
 
+=======
+>>>>>>> 1103a6d72f00a37c7610cfaf2dd1621e0293f610

@@ -30,6 +30,7 @@ class ContentRetrieveAPIView(generics.RetrieveAPIView):
     queryset = Content.objects.all()
     serializer_class = ContentSerializer
 
+<<<<<<< HEAD
     def get_queryset(self):
         # Get the logged-in user
         user = self.request.user
@@ -44,6 +45,8 @@ class ContentRetrieveAPIView(generics.RetrieveAPIView):
 
     
 
+=======
+>>>>>>> 1103a6d72f00a37c7610cfaf2dd1621e0293f610
 class SupportListAPIView(generics.ListAPIView):
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
